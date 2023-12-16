@@ -1,9 +1,9 @@
-const SubcriberModel = require("../models/subcriber.model");
+const SubscriberModel = require("../models/subcriber.model");
 
 // get route service
 const getAllSubcribers = async (req, res) => {
 	try {
-		const subscribers = await SubcriberModel.find();
+		const subscribers = await SubscriberModel.find();
 		res.send(subscribers);
 	} catch (error) {
 		res.status(500).json({ message: error.message });
@@ -14,7 +14,7 @@ const getAllSubcribers = async (req, res) => {
 const createSubscriber = async (req, res) => {
 	const subscriber = new SubcriberModel({
 		name: req.body.name,
-		channels: req.body.channels,
+		channel: req.body.channel,
 	});
 
 	try {
@@ -32,15 +32,15 @@ const getOneSubscriber = (req, res) => {
 
 // patch route service
 const updateSubscriber = async (req, res) => {
-	if (req.body.name !== null) {
-		res.subscriber.name = req.body.name;
-	} 
-	if (req.body.channels !== null) {
-		res.subscriber.channels = req.body.channels;
-	}
+	const updateData = req.body;
+
 	try {
-		const updatedSubscriber = await res.subscriber.save();
-		res.json(updatedSubscriber);
+		let id = res.subscriber.id;
+		await SubscriberModel.updateOne(
+			{ _id: id },
+			{ $set: updateData }
+		);
+		res.json({message: "document updated successfully"});
 	} catch (error) {
 		res.status(400).json({ message: error.message });
 	}
