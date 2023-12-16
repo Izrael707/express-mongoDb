@@ -1,20 +1,20 @@
-const SubcriberModel = require("../models/subcriber.model");
+const ContactModel = require("../models/contacts.model");
 
-const getSubscriber = async (req,res,next)=>{
-  let subscriber;
-  try {
-    subscriber = await SubcriberModel.findById(req.params.id)
-    if (subscriber === null) {
-      return res.status(404).json({message: 'cannot find subscriber'})
-    }
-  } catch (error) {
-    return res.status(500).json({message: error.message})
-  }
+const getContact = async (req, res, next) => {
+	let contact;
+	try {
+		contact = await ContactModel.findById(req.params.id);
+		if (contact === null) {
+			return res.status(404).json({ message: "cannot find contact" });
+		}
+	} catch (error) {
+		return res.status(500).json({ message: error.message });
+	}
 
-  res.subscriber = subscriber
-  next()
-}
+	res.contact = contact;
+	next();
+};
 
 module.exports = {
-  getSubscriber,
-}
+	getContact,
+};

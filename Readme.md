@@ -1,5 +1,5 @@
 # ABOUT
-A simple REST CRUD API for subscribers, it implements GET, POST, PATCH and DELETE Requests. Created with Express JS and MongoDB.
+A simple REST CRUD API for contacts, it implements GET, POST, PATCH and DELETE Requests. Created with Express JS and MongoDB.
 
 # REQUIREMENTS
 1. Ensure you have mongoDB server running on your local system to tun this application.

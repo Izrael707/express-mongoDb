@@ -1,19 +1,20 @@
 const mongoose = require('mongoose')
 
-const subcriberSchema = new mongoose.Schema({
+const contactSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true
   },
-  channel: {
+  phone: {
     type: String,
-    required: true
+    required: true,
+    minlength: 8
   },
-  subscribeDate: {
+  dateSaved: {
     type: Date,
     required: true,
     default: Date.now()
   }
 })
 
-module.exports = mongoose.model('Subscriber', subcriberSchema)
+module.exports = mongoose.model('Contact', contactSchema)
